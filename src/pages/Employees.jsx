@@ -1,28 +1,28 @@
 import React from "react";
-import {GridComponent, ColumnsDirective, ColumnDirective, Search, Page, ExcelExport, PdfExport, Edit, Inject} from "@syncfusion/ej2-react-grids";
+import {GridComponent, ColumnsDirective, ColumnDirective, Search, Page, Toolbar, Edit, Inject} from "@syncfusion/ej2-react-grids";
 
-import {ordersData, contextMenuItems, ordersGrid} from "../data/dummy";
+import {employeesData, employeesGrid} from "../data/dummy";
 import {Header} from "../components";
 
 
 const Employees = () =>{
     return (
         <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
-            <Header category="Page" title="Orders"/>
+            <Header category="Page" title="Employees"/>
             <GridComponent
                 id="gridcomp"
-                dataSource={ordersData}
+                dataSource={employeesData}
                 allowPaging
                 allowSorting
-                allowExcelExport
-                allowPdfExport
+                toolbar={['Search']}
+                width="auto"
             >
                 <ColumnsDirective>
-                    {ordersGrid.map((item, index) => (
+                    {employeesGrid.map((item, index) => (
                         <ColumnDirective key={index} {...item}/>
                     ))}
                 </ColumnsDirective>
-                <Inject services={[Resize, Sort, ContextMenu, Filter, Page, ExcelExport, Edit, PdfExport]}/>
+                <Inject services={[Search, Page, Toolbar]}/>
             </GridComponent>
         </div>
     )
